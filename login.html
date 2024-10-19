@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Connexion</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            if (getCookie('UUID') === '27DI8ASH8HFB872JZSD') {
+                window.location.href = 'pages/home.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Connexion</h2>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required aria-label="Nom d'utilisateur">
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required aria-label="Mot de passe">
+            <button type="submit" id="submit">
+                Se connecter
+                <div class="loader" id="loader" style="display: none;"></div>
+            </button>
+        </form>
+        <p>Pas encore de compte ? <a href="#" id="registerLink">Inscrivez-vous</a></p>
+        <p id="message"></p>
+    </div>
+    <p class="infos" id="infoslink">Informations HRP*</p>
+    <div class="panelinfos" id="panelinfos" style="display: none;">
+        <p>Ce site est prévu pour un RP<br>(Jeu de rôle) qui est autorisé<br>d'accès uniquement aux joueurs,<br><br>et n'ouvrez pas le devtool,<br>ça sera considéré comme un HRP<br>et vous serez sanctionné</p>
+    </div>
+
+    <script>
+        document.getElementById("registerLink").onclick = function() {
+            document.getElementById("message").textContent = 'Erreur : vous n\'êtes pas autorisé à créer un compte';
+        };
+
+        document.getElementById("infoslink").onclick = function() {
+            const panelInfos = document.getElementById("panelinfos");
+            panelInfos.style.display = (panelInfos.style.display === 'flex') ? 'none' : 'flex';
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const submit = document.getElementById('submit');
+            const loader = document.getElementById('loader');
+            const message = document.getElementById('message');
+
+            // Clear previous message and show the loader
+            message.textContent = '';
+            submit.style.color = 'transparent';
+            loader.style.display = 'flex';
+
+            const validCredentials = (username === 'FrogTeam12' && password === 'FrTe2024)') || (username === 'MisterCrash' && password === 'MiCr2024)') || (username === 'Nnalog' && password === 'NnAl2024)') || (username === 'Arsuup' && password === 'ArSu2024)');
+
+            setTimeout(() => {
+                if (validCredentials) {
+                    document.cookie = "UUID=27DI8ASH8HFB872JZSD; path=/";
+                    window.location.href = "pages/home.html";
+                } else {
+                    message.textContent = 'Nom d\'utilisateur ou mot de passe incorrect.';
+                    loader.style.display = 'none';
+                    submit.style.color = '#FFFFFF';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

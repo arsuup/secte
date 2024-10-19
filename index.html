@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>countdown</title>
+    <style>
+        body{
+            background-color: black;
+            background-image: url('https://imagedelivery.net/W9K_l6ndK9x4x8m3rurakg/cfede035-ada1-41da-fbb0-a400e10bfe00/original');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0%;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 500;
+            font-size: 30px;
+        }
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8); /* Ajuste le niveau d'opacité ici */
+            z-index: -1;
+        }
+        button{
+            background-color: rgb(255, 255, 255);
+            width: 200px;
+            height: 50px;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 500;
+            font-size: 19px;
+            cursor: pointer;
+            transition: ease-out 0.1s;
+            border-radius: 5px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover{
+            background-color: rgb(228, 228, 228);
+        }
+    </style>
+</head>
+<body>
+    <p id="countdown"></p>
+    <button id="bt">Aller sur le site</button>
+
+    <script>
+        document.getElementById("bt").onclick = function(){
+            window.location.href = "pages/home.html";
+        }
+
+        function calculateNextSaturday() {
+            const now = new Date();
+            let nextSaturday = new Date();
+
+            nextSaturday.setDate(now.getDate() + (6 - now.getDay()));
+            nextSaturday.setHours(12, 0, 0, 0);
+
+            if (nextSaturday <= now) {
+                nextSaturday.setDate(nextSaturday.getDate() + 7);
+            }
+            return nextSaturday;
+        }
+
+        function startCountdown() {
+            const targetDate = calculateNextSaturday();
+
+            const countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerHTML = "Cliquez pour continuer :";
+                    document.getElementById("bt").style.display = 'flex'
+                } else {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    document.getElementById("countdown").innerHTML = 
+                        `${days}j ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+.login-container {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 5px 5px 24px 0px rgba(0,0,0,0.1);
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 92.9%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.1s ease-out;
+}
+.login-container button:hover {
+    background-color: #45a049;
+    transition: 0.1s ease-out;
+}
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    left: 48%;
+    top: 23.5%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.login-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.login-container p a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: ease-out 0.1s;
+}
+.login-container p a:hover {
+    transition: ease-out 0.1s;
+    color: #45a049;
+}
+#message {
+    color: rgb(209, 0, 0);
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
+}
+.infos{
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: ease-out 0.05s;
+}
+.infos:hover{
+    color: #005c99;
+    transition: ease-out 0.05s;
+}
+.panelinfos {
+    position: absolute;
+    left: 30px;
+    bottom: 75px;
+    width: 300px;
+    height: 190px;
+    background-color: #333;
+    color: white;
+    display: none; /* Masqué par défaut */
+    align-items: center;
+    justify-content: center;
+}
