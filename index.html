@@ -83,7 +83,7 @@
                 const now = new Date().getTime();
                 const timeLeft = targetDate - now;
 
-                if (timeLeft <= 0) {
+                if (timeLeft <= 999999999999999999999999) {
                     clearInterval(countdownInterval);
                     document.getElementById("countdown").innerHTML = "Cliquez pour continuer :";
                     document.getElementById("bt").style.display = 'flex'
